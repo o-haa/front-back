@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <script src="https://unpkg.com/axios@0.26.0/dist/axios.min.js"></script>
 </head>
 <body>
     <h3>Login</h3>
@@ -21,5 +22,38 @@
         </table>
         <input type="submit" value="login">
     </form>
+    <script type="text/javascript">
+        const l_frm = document.querySelector('#login_frm')
+        l_frm.addEventListener('submit',async(e)=>{
+            e.preventDefault()
+
+            const id = document.querySelector('#id')
+            const pw = document.querySelector('#pw')
+
+            const body = {
+                userid:id.value,
+                userpw:pw.value
+            }
+
+            const response = await axios.post('http://localhost:4001/api/user/login',body,{
+                    'Content-type':'application/json',
+                    withCredentials:true,
+                })
+
+            try {
+                
+                console.log(response.data)
+                if(response.data.errno !== 0) throw new Error('Error')
+
+                alert('login success')
+
+                location.href = "http://localhost:3001"
+            } catch (e) {
+                console.log(response.data)
+                alert('login failed')
+            }
+
+        })
+    </script>
 </body>
 </html>
