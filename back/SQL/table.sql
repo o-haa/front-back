@@ -1,0 +1,12 @@
+USE teamP;
+
+CREATE TABLE user(
+userlevel INT NOT NULL DEFAULT 1,
+userid VARCHAR(20) NOT NULL PRIMARY KEY,
+userpw  VARCHAR(20) NOT NULL,
+username VARCHAR(20) NOT NULL,
+nickname VARCHAR(20) NOT NULL,
+birth date NOT NULL,
+gender VARCHAR(20) NOT NULL,
+phone VARCHAR(15) NOT NULL
+); 
